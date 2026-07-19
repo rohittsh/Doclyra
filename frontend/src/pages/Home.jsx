@@ -1,8 +1,11 @@
 import React, { useContext } from 'react'
-import Header from '../components/Header'
 import SpecialityMenu from '../components/SpecialityMenu'
 import TopDoctors from '../components/TopDoctors'
 import Banner from '../components/Banner'
+import WhyDoclyra from '../components/WhyDoclyra'
+import Testimonials from '../components/Testimonials'
+import FAQ from '../components/FAQ'
+import FinalCTA from '../components/FinalCTA'
 import { AppContext } from '../context/AppContext'
 import { useNavigate } from 'react-router-dom'
 
@@ -13,46 +16,55 @@ const Home = () => {
   return (
     <div>
       {token && reminders.length > 0 && (
-        <div className='mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800'>
+        <div className='mb-6 rounded-xl border border-amber-200 dark:border-amber-700 bg-amber-50 dark:bg-amber-950 p-4 text-sm text-amber-800 dark:text-amber-300'>
           You have {reminders.length} upcoming appointment{reminders.length === 1 ? '' : 's'} to prepare for.
         </div>
       )}
 
-      <section className='relative overflow-hidden rounded-[32px] border border-blue-100 bg-gradient-to-br from-[#eef4ff] via-white to-[#f6f8ff] p-8 shadow-[0_20px_60px_rgba(95,111,255,0.12)] sm:p-12'>
-        <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(95,111,255,0.2),_transparent_45%)]' />
-        <div className='relative grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center'>
+      <section className='relative overflow-hidden rounded-[28px] border border-[#DDE4F0] dark:border-slate-700 bg-canvas dark:bg-slate-900 p-8 sm:p-14'>
+        <div className='relative grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center'>
           <div>
-            <p className='text-sm font-semibold uppercase tracking-[0.3em] text-primary'>Premium healthcare access</p>
-            <h1 className='mt-3 text-4xl font-semibold text-slate-900 sm:text-5xl'>Book trusted care with clarity, speed, and confidence.</h1>
-            <p className='mt-4 max-w-xl text-lg text-slate-600'>From instant booking to reminders and payment insights, Prescripto brings every step of your care journey into one refined experience.</p>
+            <p className='text-xs font-semibold uppercase tracking-[0.35em] text-gold'>Trusted care, precisely scheduled</p>
+            <h1 className='font-serif mt-4 text-4xl leading-tight text-ink dark:text-slate-100 sm:text-5xl'>Care that moves at the pace of trust.</h1>
+            <p className='mt-5 max-w-xl text-lg text-slate-brand dark:text-slate-400'>Doclyra pairs verified specialists with a calm, dependable booking experience — from the first search to the follow-up reminder.</p>
+
+            {/* Signature element: an animated vital-line (EKG pulse) drawn once on load */}
+            <svg className='vital-line mt-8 w-full max-w-md' height='40' viewBox='0 0 400 40' fill='none' aria-hidden='true'>
+              <path d='M0 20 H140 L158 4 L176 36 L194 12 L206 28 L218 20 H400' stroke='#1B4B91' strokeWidth='2.5' strokeLinecap='round' strokeLinejoin='round' />
+            </svg>
+
             <div className='mt-6 flex flex-wrap gap-3'>
               <button onClick={() => navigate('/doctors')} className='rounded-full bg-primary px-6 py-3 text-white shadow-lg shadow-primary/20'>Find a doctor</button>
-              <button onClick={() => navigate('/about')} className='rounded-full border border-primary/20 px-6 py-3 text-primary'>Explore more</button>
+              <button onClick={() => navigate('/about')} className='rounded-full border border-primary/30 px-6 py-3 text-primary dark:text-slate-200'>Explore more</button>
             </div>
           </div>
-          <div className='rounded-[24px] bg-white/80 p-6 shadow-xl backdrop-blur'>
+
+          <div className='rounded-[24px] bg-ink p-6 shadow-2xl'>
             <div className='grid gap-3 sm:grid-cols-2'>
-              <div className='rounded-2xl border border-blue-100 bg-blue-50 p-4'>
-                <p className='text-sm text-blue-700'>Smart reminders</p>
-                <p className='mt-2 text-2xl font-semibold text-slate-900'>24/7</p>
+              <div className='rounded-2xl border border-white/10 bg-white/5 p-4'>
+                <p className='text-sm text-slate-300'>Smart reminders</p>
+                <p className='font-serif mt-2 text-2xl text-white'>24/7</p>
               </div>
-              <div className='rounded-2xl border border-green-100 bg-green-50 p-4'>
-                <p className='text-sm text-green-700'>Live availability</p>
-                <p className='mt-2 text-2xl font-semibold text-slate-900'>Instant</p>
+              <div className='rounded-2xl border border-white/10 bg-white/5 p-4'>
+                <p className='text-sm text-slate-300'>Live availability</p>
+                <p className='font-serif mt-2 text-2xl text-white'>Instant</p>
               </div>
-              <div className='rounded-2xl border border-purple-100 bg-purple-50 p-4 sm:col-span-2'>
-                <p className='text-sm text-purple-700'>Flexible payments</p>
-                <p className='mt-2 text-2xl font-semibold text-slate-900'>Secure and clear</p>
+              <div className='rounded-2xl border border-gold/30 bg-gold/10 p-4 sm:col-span-2'>
+                <p className='text-sm text-gold'>Flexible payments</p>
+                <p className='font-serif mt-2 text-2xl text-white'>Secure and clear</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <Header />
       <SpecialityMenu />
       <TopDoctors />
       <Banner />
+      <WhyDoclyra />
+      <Testimonials />
+      <FinalCTA />
+      <FAQ />
     </div>
   )
 }

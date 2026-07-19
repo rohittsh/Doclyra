@@ -7,11 +7,20 @@ export default {
   ],
   theme: {
     extend: {
-      gridTemplateColumns:{
-        'auto':'repeat(auto-fill, minmax(200px, 1fr))'
+      gridTemplateColumns: {
+        'auto': 'repeat(auto-fill, minmax(200px, 1fr))'
       },
-      colors:{
-        'primary':'#5F6FFF'
+      colors: {
+        'primary': '#1B4B91',
+        'ink': '#0B2545',
+        'gold': '#B8862E',
+        'canvas': '#F6F8FC',
+        'slate-brand': '#55607A'
+      },
+      fontFamily: {
+        serif: ['"Source Serif 4"', 'serif'],
+        sans: ['Inter', 'sans-serif'],
+        mono: ['"IBM Plex Mono"', 'monospace']
       }
     },
   },

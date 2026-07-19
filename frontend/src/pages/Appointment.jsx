@@ -215,32 +215,32 @@ const Appointment = () => {
                     <img className='bg-primary w-full sm:max-w-72 rounded-lg' src={docInfo.image} alt="" />
                 </div>
 
-                <div className='flex-1 border border-[#ADADAD] rounded-lg p-8 py-7 bg-white mx-2 sm:mx-0 mt-[-80px] sm:mt-0'>
+                <div className='flex-1 border border-[#ADADAD] dark:border-slate-700 rounded-lg p-8 py-7 bg-white dark:bg-slate-900 mx-2 sm:mx-0 mt-[-80px] sm:mt-0'>
 
                     {/* ----- Doc Info : name, degree, experience ----- */}
 
-                    <p className='flex items-center gap-2 text-3xl font-medium text-gray-700'>{docInfo.name} <img className='w-5' src={assets.verified_icon} alt="" /></p>
-                    <div className='flex items-center gap-2 mt-1 text-gray-600'>
+                    <p className='flex items-center gap-2 text-3xl font-medium text-gray-700 dark:text-slate-100'>{docInfo.name} <img className='w-5' src={assets.verified_icon} alt="" /></p>
+                    <div className='flex items-center gap-2 mt-1 text-gray-600 dark:text-slate-400'>
                         <p>{docInfo.degree} - {docInfo.speciality}</p>
-                        <button className='py-0.5 px-2 border text-xs rounded-full'>{docInfo.experience}</button>
+                        <button className='py-0.5 px-2 border dark:border-slate-600 dark:text-slate-300 text-xs rounded-full'>{docInfo.experience}</button>
                     </div>
 
                     {/* ----- Doc About ----- */}
                     <div>
-                        <p className='flex items-center gap-1 text-sm font-medium text-[#262626] mt-3'>About <img className='w-3' src={assets.info_icon} alt="" /></p>
-                        <p className='text-sm text-gray-600 max-w-[700px] mt-1'>{docInfo.about}</p>
+                        <p className='flex items-center gap-1 text-sm font-medium text-ink dark:text-slate-100 mt-3'>About <img className='w-3' src={assets.info_icon} alt="" /></p>
+                        <p className='text-sm text-gray-600 dark:text-slate-400 max-w-[700px] mt-1'>{docInfo.about}</p>
                     </div>
 
-                    <p className='text-gray-600 font-medium mt-4'>Appointment fee: <span className='text-gray-800'>{currencySymbol}{docInfo.fees}</span> </p>
+                    <p className='text-gray-600 dark:text-slate-400 font-medium mt-4'>Appointment fee: <span className='text-gray-800 dark:text-slate-200'>{currencySymbol}{docInfo.fees}</span> </p>
                 </div>
             </div>
 
             {/* Booking slots */}
-            <div className='sm:ml-72 sm:pl-4 mt-8 font-medium text-[#565656]'>
+            <div className='sm:ml-72 sm:pl-4 mt-8 font-medium text-slate-brand dark:text-slate-300'>
                 <p >Booking slots</p>
                 <div className='flex gap-3 items-center w-full overflow-x-scroll mt-4'>
                     {docSlots.length && docSlots.map((item, index) => (
-                        <div onClick={() => setSlotIndex(index)} key={index} className={`text-center py-6 min-w-16 rounded-full cursor-pointer ${slotIndex === index ? 'bg-primary text-white' : 'border border-[#DDDDDD]'}`}>
+                        <div onClick={() => setSlotIndex(index)} key={index} className={`text-center py-6 min-w-16 rounded-full cursor-pointer ${slotIndex === index ? 'bg-primary text-white' : 'border border-[#DDDDDD] dark:border-slate-600 dark:text-slate-300'}`}>
                             <p>{item[0] && daysOfWeek[item[0].datetime.getDay()]}</p>
                             <p>{item[0] && item[0].datetime.getDate()}</p>
                         </div>
@@ -249,7 +249,7 @@ const Appointment = () => {
 
                 <div className='flex items-center gap-3 w-full overflow-x-scroll mt-4'>
                     {docSlots.length && docSlots[slotIndex].map((item, index) => (
-                        <p onClick={() => setSlotTime(item.time)} key={index} className={`text-sm font-light  flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${item.time === slotTime ? 'bg-primary text-white' : 'text-[#949494] border border-[#B4B4B4]'}`}>{item.time.toLowerCase()}</p>
+                        <p onClick={() => setSlotTime(item.time)} key={index} className={`text-sm font-light  flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${item.time === slotTime ? 'bg-primary text-white' : 'text-slate-brand dark:text-slate-400 border border-[#B4B4B4] dark:border-slate-600'}`}>{item.time.toLowerCase()}</p>
                     ))}
                 </div>
 
@@ -258,41 +258,41 @@ const Appointment = () => {
                 </button>
             </div>
 
-            <div className='mt-8 rounded-2xl border border-[#E3E8FF] bg-white p-5 shadow-sm'>
+            <div className='mt-8 rounded-2xl border border-[#E3E8FF] dark:border-slate-700 bg-white dark:bg-slate-900 p-5 shadow-sm'>
                 <div className='flex items-center justify-between gap-3'>
                     <div>
-                        <p className='text-lg font-semibold text-gray-800'>Patient reviews</p>
-                        <p className='text-sm text-gray-600'>Share your experience and help others choose confidently.</p>
+                        <p className='text-lg font-semibold text-gray-800 dark:text-slate-100'>Patient reviews</p>
+                        <p className='text-sm text-gray-600 dark:text-slate-400'>Share your experience and help others choose confidently.</p>
                     </div>
-                    <div className='rounded-full bg-[#EAEFFF] px-3 py-1 text-sm font-medium text-primary'>⭐ {reviews.length} reviews</div>
+                    <div className='rounded-full bg-[#EAEFFF] dark:bg-slate-800 px-3 py-1 text-sm font-medium text-primary'>⭐ {reviews.length} reviews</div>
                 </div>
 
                 <div className='mt-4 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]'>
                     <div className='space-y-3'>
                         {loadingReviews ? (
                             <div className='animate-pulse space-y-3'>
-                                <div className='h-16 rounded-lg bg-gray-100' />
-                                <div className='h-16 rounded-lg bg-gray-100' />
+                                <div className='h-16 rounded-lg bg-gray-100 dark:bg-slate-800' />
+                                <div className='h-16 rounded-lg bg-gray-100 dark:bg-slate-800' />
                             </div>
                         ) : reviews.length > 0 ? reviews.slice(0, 3).map((item, index) => (
-                            <div key={index} className='rounded-xl border border-gray-200 p-3'>
+                            <div key={index} className='rounded-xl border border-gray-200 dark:border-slate-700 p-3'>
                                 <div className='flex items-center justify-between'>
-                                    <p className='font-medium text-gray-800'>{item.userName}</p>
+                                    <p className='font-medium text-gray-800 dark:text-slate-100'>{item.userName}</p>
                                     <p className='text-sm text-primary'>{'★'.repeat(item.rating)}</p>
                                 </div>
-                                <p className='mt-2 text-sm text-gray-600'>{item.comment}</p>
+                                <p className='mt-2 text-sm text-gray-600 dark:text-slate-400'>{item.comment}</p>
                             </div>
                         )) : (
-                            <p className='text-sm text-gray-500'>No reviews yet. Be the first to share your experience.</p>
+                            <p className='text-sm text-gray-500 dark:text-slate-500'>No reviews yet. Be the first to share your experience.</p>
                         )}
                     </div>
 
-                    <div className='rounded-xl border border-dashed border-gray-300 p-4'>
-                        <p className='font-medium text-gray-800'>Leave a review</p>
-                        <textarea value={reviewText} onChange={(e) => setReviewText(e.target.value)} rows='4' className='mt-3 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-primary' placeholder='How was your visit?' />
+                    <div className='rounded-xl border border-dashed border-gray-300 dark:border-slate-700 p-4'>
+                        <p className='font-medium text-gray-800 dark:text-slate-100'>Leave a review</p>
+                        <textarea value={reviewText} onChange={(e) => setReviewText(e.target.value)} rows='4' className='mt-3 w-full rounded-lg border border-gray-300 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100 px-3 py-2 text-sm outline-none focus:border-primary' placeholder='How was your visit?' />
                         <div className='mt-3 flex items-center gap-2'>
-                            <span className='text-sm text-gray-600'>Rating:</span>
-                            <select value={reviewRating} onChange={(e) => setReviewRating(Number(e.target.value))} className='rounded border border-gray-300 px-2 py-1 text-sm'>
+                            <span className='text-sm text-gray-600 dark:text-slate-400'>Rating:</span>
+                            <select value={reviewRating} onChange={(e) => setReviewRating(Number(e.target.value))} className='rounded border border-gray-300 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100 px-2 py-1 text-sm'>
                                 {[5,4,3,2,1].map((value) => <option key={value} value={value}>{value} ★</option>)}
                             </select>
                         </div>

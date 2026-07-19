@@ -9,7 +9,7 @@ import reviewModel from "../models/reviewModel.js";
 import { v2 as cloudinary } from 'cloudinary'
 import stripe from "stripe";
 import razorpay from 'razorpay';
-import { sendAppointmentReminder } from '../services/reminderService.js';
+import { sendAppointmentReminder, sendAppointmentConfirmation, sendAppointmentCancellation } from '../services/reminderService.js';
 
 // Gateway Initialize
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY
@@ -146,13 +146,9 @@ const updateProfile = async (req, res) => {
 }
 
 const getDoctorById = async (docId) => {
-    if (!docId) return null
+    if (!docId || !mongoose.Types.ObjectId.isValid(docId)) return null
 
-    if (mongoose.Types.ObjectId.isValid(docId)) {
-        return doctorModel.findById(docId).select("-password")
-    }
-
-    return doctorModel.findOne({ _id: docId }).select("-password")
+    return doctorModel.findById(docId).select("-password")
 }
 
 // API to book appointment 
@@ -222,6 +218,15 @@ const bookAppointment = async (req, res) => {
 
         res.json({ success: true, message: 'Appointment Booked' })
 
+        // send confirmation email (fails silently if email isn't configured)
+        sendAppointmentConfirmation({
+            to: userData.email,
+            userName: userData.name,
+            doctorName: docData.name,
+            slotDate,
+            slotTime
+        })
+
     } catch (error) {
         console.log(error)
         res.json({ success: false, message: error.message })
@@ -243,18 +248,29 @@ const cancelAppointment = async (req, res) => {
 
         await appointmentModel.findByIdAndUpdate(appointmentId, { cancelled: true })
 
-        // releasing doctor slot 
+        // releasing doctor slot (only possible for real doctors backed by a DB record —
+        // placeholder/demo doctors like "doc3" have no document to release a slot on)
         const { docId, slotDate, slotTime } = appointmentData
 
-        const doctorData = await doctorModel.findById(docId)
-
-        let slots_booked = doctorData.slots_booked
-
-        slots_booked[slotDate] = slots_booked[slotDate].filter(e => e !== slotTime)
-
-        await doctorModel.findByIdAndUpdate(docId, { slots_booked })
+        if (mongoose.Types.ObjectId.isValid(docId)) {
+            const doctorData = await doctorModel.findById(docId)
+            if (doctorData && doctorData.slots_booked && doctorData.slots_booked[slotDate]) {
+                let slots_booked = doctorData.slots_booked
+                slots_booked[slotDate] = slots_booked[slotDate].filter(e => e !== slotTime)
+                await doctorModel.findByIdAndUpdate(docId, { slots_booked })
+            }
+        }
 
         res.json({ success: true, message: 'Appointment Cancelled' })
+
+        // send cancellation email
+        sendAppointmentCancellation({
+            to: appointmentData.userData.email,
+            userName: appointmentData.userData.name,
+            doctorName: appointmentData.docData.name,
+            slotDate,
+            slotTime
+        })
 
     } catch (error) {
         console.log(error)

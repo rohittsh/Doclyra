@@ -1,5 +1,6 @@
 import React from 'react'
 import { useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { DoctorContext } from '../../context/DoctorContext'
 import { AppContext } from '../../context/AppContext'
 import { assets } from '../../assets/assets'
@@ -8,6 +9,7 @@ const DoctorAppointments = () => {
 
   const { dToken, appointments, getAppointments, cancelAppointment, completeAppointment } = useContext(DoctorContext)
   const { slotDateFormat, calculateAge, currency } = useContext(AppContext)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (dToken) {
@@ -48,7 +50,8 @@ const DoctorAppointments = () => {
               ? <p className='text-red-400 text-xs font-medium'>Cancelled</p>
               : item.isCompleted
                 ? <p className='text-green-500 text-xs font-medium'>Completed</p>
-                : <div className='flex'>
+                : <div className='flex items-center gap-2'>
+                  {item.payment && <button onClick={() => navigate(`/video-call/${item._id}`)} className='text-xs px-3 py-1.5 rounded-full bg-primary text-white whitespace-nowrap'>Video Call</button>}
                   <img onClick={() => cancelAppointment(item._id)} className='w-10 cursor-pointer' src={assets.cancel_icon} alt="" />
                   <img onClick={() => completeAppointment(item._id)} className='w-10 cursor-pointer' src={assets.tick_icon} alt="" />
                 </div>

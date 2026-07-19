@@ -1,7 +1,9 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import mongoose from "mongoose";
 import doctorModel from "../models/doctorModel.js";
 import appointmentModel from "../models/appointmentModel.js";
+import { sendAppointmentCancellation, sendAppointmentCompletion } from "../services/reminderService.js";
 
 // API for doctor Login 
 const loginDoctor = async (req, res) => {
@@ -55,6 +57,15 @@ const appointmentCancel = async (req, res) => {
         const appointmentData = await appointmentModel.findById(appointmentId)
         if (appointmentData && appointmentData.docId === docId) {
             await appointmentModel.findByIdAndUpdate(appointmentId, { cancelled: true })
+
+            sendAppointmentCancellation({
+                to: appointmentData.userData.email,
+                userName: appointmentData.userData.name,
+                doctorName: appointmentData.docData.name,
+                slotDate: appointmentData.slotDate,
+                slotTime: appointmentData.slotTime
+            })
+
             return res.json({ success: true, message: 'Appointment Cancelled' })
         }
 
@@ -76,6 +87,15 @@ const appointmentComplete = async (req, res) => {
         const appointmentData = await appointmentModel.findById(appointmentId)
         if (appointmentData && appointmentData.docId === docId) {
             await appointmentModel.findByIdAndUpdate(appointmentId, { isCompleted: true })
+
+            sendAppointmentCompletion({
+                to: appointmentData.userData.email,
+                userName: appointmentData.userData.name,
+                doctorName: appointmentData.docData.name,
+                slotDate: appointmentData.slotDate,
+                slotTime: appointmentData.slotTime
+            })
+
             return res.json({ success: true, message: 'Appointment Completed' })
         }
 
@@ -108,7 +128,14 @@ const changeAvailablity = async (req, res) => {
 
         const { docId } = req.body
 
+        if (!mongoose.Types.ObjectId.isValid(docId)) {
+            return res.json({ success: false, message: 'This doctor is a placeholder demo profile and has no real record to update. Add a real doctor via Add Doctor.' })
+        }
+
         const docData = await doctorModel.findById(docId)
+        if (!docData) {
+            return res.json({ success: false, message: 'Doctor not found' })
+        }
         await doctorModel.findByIdAndUpdate(docId, { available: !docData.available })
         res.json({ success: true, message: 'Availablity Changed' })
 
@@ -123,6 +150,11 @@ const doctorProfile = async (req, res) => {
     try {
 
         const { docId } = req.body
+
+        if (!mongoose.Types.ObjectId.isValid(docId)) {
+            return res.json({ success: false, message: 'This doctor is a placeholder demo profile and has no real record' })
+        }
+
         const profileData = await doctorModel.findById(docId).select('-password')
 
         res.json({ success: true, profileData })
@@ -138,6 +170,10 @@ const updateDoctorProfile = async (req, res) => {
     try {
 
         const { docId, fees, address, available } = req.body
+
+        if (!mongoose.Types.ObjectId.isValid(docId)) {
+            return res.json({ success: false, message: 'This doctor is a placeholder demo profile and has no real record to update' })
+        }
 
         await doctorModel.findByIdAndUpdate(docId, { fees, address, available })
 

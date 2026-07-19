@@ -96,8 +96,8 @@ export const doctors = [
         about: 'Dr. Rohan Sharma is dedicated to delivering compassionate, preventive, and evidence-based care with a focus on long-term wellness and clear patient guidance.',
         fees: 50,
         address: {
-            line1: '17th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
+            line1: 'MG Road, Near Brigade Towers',
+            line2: 'Bengaluru, Karnataka - 560001'
         }
     },
     {
@@ -110,8 +110,8 @@ export const doctors = [
         about: 'Dr. Meera Nair combines empathy with modern gynecological care, providing attentive support for women’s health, preventive screenings, and personalized treatment.',
         fees: 60,
         address: {
-            line1: '27th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
+            line1: 'Linking Road, Bandra West',
+            line2: 'Mumbai, Maharashtra - 400050'
         }
     },
     {
@@ -124,8 +124,8 @@ export const doctors = [
         about: 'Dr. Anika Patel is known for expert dermatology care, helping patients manage skin concerns with a blend of medical treatment and personalized skincare guidance.',
         fees: 30,
         address: {
-            line1: '37th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
+            line1: 'Connaught Place, Block A',
+            line2: 'New Delhi, Delhi - 110001'
         }
     },
     {
@@ -138,8 +138,8 @@ export const doctors = [
         about: 'Dr. Arjun Rao provides gentle, child-focused care with a strong emphasis on vaccinations, growth monitoring, and family-centered pediatric treatment.',
         fees: 40,
         address: {
-            line1: '47th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
+            line1: 'Anna Salai, Near Gemini Flyover',
+            line2: 'Chennai, Tamil Nadu - 600002'
         }
     },
     {
@@ -152,8 +152,8 @@ export const doctors = [
         about: 'Dr. Priya Menon specializes in neurological care, combining careful diagnosis with compassionate treatment plans for patients with complex brain and nerve conditions.',
         fees: 50,
         address: {
-            line1: '57th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
+            line1: 'Banjara Hills, Road No. 12',
+            line2: 'Hyderabad, Telangana - 500034'
         }
     },
     {
@@ -166,8 +166,8 @@ export const doctors = [
         about: 'Dr. Amit Verma offers thoughtful neurological care with an emphasis on accurate diagnosis, medication management, and patient comfort.',
         fees: 50,
         address: {
-            line1: '57th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
+            line1: 'FC Road, Near Deccan Gymkhana',
+            line2: 'Pune, Maharashtra - 411004'
         }
     },
     {
@@ -180,8 +180,8 @@ export const doctors = [
         about: 'Dr. Karthik Iyer is dedicated to comprehensive internal medicine care, helping patients manage everyday health concerns with clarity and confidence.',
         fees: 50,
         address: {
-            line1: '17th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
+            line1: 'Park Street, Near Maidan',
+            line2: 'Kolkata, West Bengal - 700016'
         }
     },
     {
@@ -194,8 +194,8 @@ export const doctors = [
         about: 'Dr. Nisha Gupta provides compassionate women’s healthcare with a focus on fertility support, preventive screening, and holistic treatment plans.',
         fees: 60,
         address: {
-            line1: '27th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
+            line1: 'C.G. Road, Navrangpura',
+            line2: 'Ahmedabad, Gujarat - 380009'
         }
     },
     {
@@ -208,8 +208,8 @@ export const doctors = [
         about: 'Dr. Sneha Kapoor is passionate about skincare and dermatological treatment, helping patients achieve healthy skin through evidence-based care.',
         fees: 30,
         address: {
-            line1: '37th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
+            line1: 'MI Road, Near Panch Batti',
+            line2: 'Jaipur, Rajasthan - 302001'
         }
     },
     {
@@ -222,8 +222,8 @@ export const doctors = [
         about: 'Dr. Vikram Singh offers attentive pediatric care with a focus on growth, immunity, and long-term child wellness.',
         fees: 40,
         address: {
-            line1: '47th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
+            line1: 'Hazratganj, Near GPO',
+            line2: 'Lucknow, Uttar Pradesh - 226001'
         }
     },
     {
@@ -236,8 +236,8 @@ export const doctors = [
         about: 'Dr. Aisha Khan delivers patient-centered neurological treatment with a careful focus on diagnosis, recovery, and ongoing support.',
         fees: 50,
         address: {
-            line1: '57th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
+            line1: 'Sector 17, Near Plaza',
+            line2: 'Chandigarh, Punjab - 160017'
         }
     },
     {
@@ -250,8 +250,8 @@ export const doctors = [
         about: 'Dr. Suresh Malhotra is known for clear communication and reliable care for patients needing expert internal medicine support.',
         fees: 50,
         address: {
-            line1: '57th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
+            line1: 'SG Highway, Near Iscon Cross Road',
+            line2: 'Ahmedabad, Gujarat - 380054'
         }
     },
     {
@@ -264,8 +264,8 @@ export const doctors = [
         about: 'Dr. Divya Rao offers trusted general physician care with a strong commitment to preventive health and chronic disease management.',
         fees: 50,
         address: {
-            line1: '17th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
+            line1: 'Camp Area, East Street',
+            line2: 'Pune, Maharashtra - 411001'
         }
     },
     {
@@ -278,8 +278,8 @@ export const doctors = [
         about: 'Dr. Kavya Desai provides professional gynecology care with a compassionate approach to women’s health and wellness.',
         fees: 60,
         address: {
-            line1: '27th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
+            line1: 'Salt Lake, Sector V',
+            line2: 'Kolkata, West Bengal - 700091'
         }
     },
     {
@@ -292,8 +292,8 @@ export const doctors = [
         about: 'Dr. Tanvi Joshi combines expertise in dermatology with personalized care for skin health, allergies, and cosmetic concerns.',
         fees: 30,
         address: {
-            line1: '37th Cross, Richmond',
-            line2: 'Circle, Ring Road, London'
+            line1: 'Koramangala, 5th Block',
+            line2: 'Bengaluru, Karnataka - 560095'
         }
     },
 ]

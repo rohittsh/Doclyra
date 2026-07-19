@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "doclyra-backend",
   "version": "1.0.0",
   "main": "server.js",
   "type": "module",
@@ -22,6 +22,7 @@
     "nodemailer": "^9.0.3",
     "nodemon": "^3.1.4",
     "razorpay": "^2.9.4",
+    "socket.io": "^4.7.5",
     "stripe": "^16.5.0",
     "validator": "^13.12.0"
   }
