@@ -19,7 +19,12 @@ import { Server } from "socket.io"
 const initSocket = (httpServer) => {
     const io = new Server(httpServer, {
         cors: {
-            origin: "*", // tighten this to your deployed frontend/admin URLs in production
+            origin: [
+                "https://doclyra.vercel.app",
+                "https://doclyra-ipvc.vercel.app",
+                "http://localhost:5173",
+                "http://localhost:5174"
+            ],
             methods: ["GET", "POST"]
         }
     })

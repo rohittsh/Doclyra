@@ -17,9 +17,27 @@ connectDB()
 connectCloudinary()
 initSocket(httpServer)
 
+// Only these origins may call the API. Add any new deployed frontend/admin
+// URL here (or replace with your own domain later) before removing localhost.
+const allowedOrigins = [
+    "https://doclyra.vercel.app",
+    "https://doclyra-ipvc.vercel.app",
+    "http://localhost:5173",
+    "http://localhost:5174"
+]
+
 // middlewares
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+    origin: function (origin, callback) {
+        // allow requests with no origin (e.g. curl, mobile apps, server-to-server)
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true)
+        } else {
+            callback(new Error("Not allowed by CORS"))
+        }
+    }
+}))
 
 // api endpoints
 app.use("/api/user", userRouter)
